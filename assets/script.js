@@ -1,3 +1,7 @@
+//Function to capitalise first character for strings
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 function displayHeroInfo() {
     var hero = $("#search-input").val(); 
     var queryURLOne = "https://www.superheroapi.com/api.php/10158163759470734/search/" + hero;
@@ -26,6 +30,9 @@ function displayHeroInfo() {
             heroImgTag.attr("src", heroPic);
             heroImgTag.attr("alt", "hero image");
             heroArticle.empty().append(heroImgTag);
+            // this section will change the hero's name on the page
+            var heroPtag = $("#hero-name");
+            heroPtag.text(capitalizeFirstLetter(hero));
         });
     //giphy API call
     $.ajax({
@@ -44,10 +51,10 @@ function displayHeroInfo() {
             heroImage.attr("alt", "hero image");
 
             // Prepending the catImage to the images div
-            $("#gif-div").append(heroImage);
+            $("#gif-div").empty().append(heroImage);
         });
 
 
-};
+}
 
 $("#submit-btn").on("click", displayHeroInfo);
